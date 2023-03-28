@@ -1,0 +1,26 @@
+### get all games
+get https://localhost:3000/games
+
+### get game by id
+get https://localhost:3000/games/3
+
+### post game
+
+post https://localhost:3000/games
+Content-Length: application/json
+{
+    "GNames": "Forma 1  Serie",
+    "TId": 3,
+    "MoS": "Multi and single"
+}
+
+
+### put a game
+PUT https://localhost:3000/games/12
+Content-Length: application/json
+
+{
+    "GNames": "Roblox",
+    "TId": "-",
+    "MoS": "Multi"
+}

@@ -46,6 +46,16 @@ insert into types
   (4,'Shooter'),
   (5,'Sandbox/Open world'),
   (6,'Simulation');
+
+
+
+SELECT * FROM games
+  WHERE id = 3;
+
+ INSERT INTO games
+      (GNames, TId, MoS)
+      VALUES
+      (?, ?, ?)
  
 
 
