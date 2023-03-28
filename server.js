@@ -61,8 +61,8 @@ app.post("/games", (req, res) => {
   console.log(req.body);
   const newR = {
     GNames: mySanitizeHtml(req.body.GNames),
-    TId: mySanitizeHtml(req.body.TId),
-    MoS: +mySanitizeHtml(req.body.MoS),
+    TId: +mySanitizeHtml(req.body.TId),
+    MoS: mySanitizeHtml(req.body.MoS),
   };
 
   pool.getConnection(function (error, connection) {
@@ -78,7 +78,7 @@ app.post("/games", (req, res) => {
     `;
     connection.query(
       sql,
-      [newR.name, newR.licenceNumber, newR.hourlyRate],
+      [newR.GNames, newR.TId, newR.MoS],
       (error, results, fields) => {
         sendingPost(res, error, results, newR);
       }
@@ -88,12 +88,12 @@ app.post("/games", (req, res) => {
 });
 
 //update
-app.put("/cars/:id", (req, res) => {
+app.put("/games/:id", (req, res) => {
   const id = req.params.id;
   const newR = {
-    name: mySanitizeHtml(req.body.name),
-    licenceNumber: mySanitizeHtml(req.body.licenceNumber),
-    hourlyRate: +mySanitizeHtml(req.body.hourlyRate),
+    name: mySanitizeHtml(req.body.GNames),
+    TId: +mySanitizeHtml(req.body.TId),
+    MoS: mySanitizeHtml(req.body.MoS),
   };
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -102,15 +102,15 @@ app.put("/cars/:id", (req, res) => {
     }
 
     const sql = `
-    UPDATE cars SET
-    name = ?,
-    licenceNumber = ?,
-    hourlyRate = ?
+    UPDATE games SET
+    GNames = ?,
+    TId = ?,
+    MoS = ?
     WHERE id = ?
   `;
     connection.query(
       sql,
-      [newR.name, newR.licenceNumber, newR.hourlyRate, id],
+      [newR.GNames, newR.TId, newR.MoS, id],
       (error, results, fields) => {
         sendingPut(res, error, results, id, newR)
       }
@@ -119,7 +119,7 @@ app.put("/cars/:id", (req, res) => {
   });
 });
 
-app.delete("/cars/:id", (req, res) => {
+app.delete("/games/:id", (req, res) => {
   const id = req.params.id;
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -128,7 +128,7 @@ app.delete("/cars/:id", (req, res) => {
     }
 
     const sql = `
-    DELETE from cars
+    DELETE from games
   WHERE id = ?
   `;
     connection.query(sql, [id], (error, results, fields) => {
@@ -141,13 +141,13 @@ app.delete("/cars/:id", (req, res) => {
 //#endregion cars
 
 //#region trips
-app.get("/trips", (req, res) => {
+app.get("/types", (req, res) => {
   pool.getConnection(function (error, connection) {
     if (error) {
       sendingInfo(res, 0, "server error", [], 403)
       return;
     }
-    const sql = "SELECT * FROM trips";
+    const sql = "SELECT * FROM types";
     connection.query(sql, (error, results, fields) => {
       sendingGet(res, error, results);
     });
@@ -155,7 +155,7 @@ app.get("/trips", (req, res) => {
   });
 });
 
-app.get("/trips/:id", (req, res) => {
+app.get("/types/:id", (req, res) => {
   const id = req.params.id;
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -163,11 +163,11 @@ app.get("/trips/:id", (req, res) => {
       return;
     }
     //   const sql = `
-    //   SELECT * FROM cars
+    //   SELECT * FROM types
     // WHERE id = ${id}
     //   `;
     const sql = `
-    SELECT * FROM trips
+    SELECT * FROM types
   WHERE id = ?
   `;
     connection.query(sql, [id], (error, results, fields) => {
@@ -177,12 +177,10 @@ app.get("/trips/:id", (req, res) => {
   });
 });
 
-app.post("/trips", (req, res) => {
+app.post("/types", (req, res) => {
   console.log(req.body);
   const newR = {
-    name: mySanitizeHtml(req.body.name),
-    licenceNumber: mySanitizeHtml(req.body.licenceNumber),
-    hourlyRate: +mySanitizeHtml(req.body.hourlyRate),
+    TName: mySanitizeHtml(req.body.TName)
   };
 
   pool.getConnection(function (error, connection) {
@@ -191,14 +189,14 @@ app.post("/trips", (req, res) => {
       return;
     }
     const sql = `
-    INSERT INTO cars
-      (name, licenceNumber, hourlyRate)
+    INSERT INTO types
+      (TName)
       VALUES
-      (?, ?, ?)
+      (?)
     `;
     connection.query(
       sql,
-      [newR.name, newR.licenceNumber, newR.hourlyRate],
+      [newR.TName],
       (error, results, fields) => {
         sendingPost(res, error, results, newR);
       }
@@ -208,12 +206,10 @@ app.post("/trips", (req, res) => {
 });
 
 //update
-app.put("/trips/:id", (req, res) => {
+app.put("/types/:id", (req, res) => {
   const id = req.params.id;
   const newR = {
-    name: mySanitizeHtml(req.body.name),
-    licenceNumber: mySanitizeHtml(req.body.licenceNumber),
-    hourlyRate: +mySanitizeHtml(req.body.hourlyRate),
+    TName: mySanitizeHtml(req.body.name)
   };
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -223,14 +219,12 @@ app.put("/trips/:id", (req, res) => {
 
     const sql = `
     UPDATE cars SET
-    name = ?,
-    licenceNumber = ?,
-    hourlyRate = ?
+    TName = ?
     WHERE id = ?
   `;
     connection.query(
       sql,
-      [newR.name, newR.licenceNumber, newR.hourlyRate, id],
+      [newR.TName, id],
       (error, results, fields) => {
         sendingPut(res, error, results, id, newR)
       }
@@ -239,7 +233,7 @@ app.put("/trips/:id", (req, res) => {
   });
 });
 
-app.delete("/trips/:id", (req, res) => {
+app.delete("/types/:id", (req, res) => {
   const id = req.params.id;
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -248,7 +242,7 @@ app.delete("/trips/:id", (req, res) => {
     }
 
     const sql = `
-    DELETE from cars
+    DELETE from types
   WHERE id = ?
   `;
     connection.query(sql, [id], (error, results, fields) => {

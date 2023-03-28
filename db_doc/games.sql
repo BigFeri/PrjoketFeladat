@@ -55,7 +55,22 @@ SELECT * FROM games
  INSERT INTO games
       (GNames, TId, MoS)
       VALUES
-      (?, ?, ?)
+      ('Roblox', , 'Multi')
+
+  SELECT * FROM types
+  WHERE id = 6;
+
+      INSERT INTO types
+      (Tname)
+      VALUES
+      ('Retro');
+
+    UPDATE types SET
+    TName
+    WHERE id = ?;
+
+DELETE from types
+  WHERE id = 7;
  
 
 

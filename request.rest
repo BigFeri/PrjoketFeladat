@@ -4,6 +4,13 @@ get https://localhost:3000/games
 ### get game by id
 get https://localhost:3000/games/3
 
+### delete game by id
+DELETE https://localhost:3000/games/12
+
+
+### not available game id 
+DELETE https://localhost:3000/games/11
+
 ### post game
 
 post https://localhost:3000/games
@@ -21,6 +28,37 @@ Content-Length: application/json
 
 {
     "GNames": "Roblox",
-    "TId": "-",
+    "TId": ,
     "MoS": "Multi"
+}
+
+### get all type
+get https://localhost:3000/types
+
+### get type by id
+get https://localhost:3000/types/3
+
+### delete type by id
+DELETE https://localhost:3000/types/7
+
+
+
+### not available type id 
+DELETE https://localhost:3000/types/11
+
+### post type
+
+post https://localhost:3000/types
+Content-Length: application/json
+{
+    "TName": "Puzzle"
+}
+
+
+### put a game
+PUT https://localhost:3000/types/7
+Content-Length: application/json
+
+{
+    "TName": "Retro"
 }
