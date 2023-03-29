@@ -1,19 +1,19 @@
 ### get all games
-get https://localhost:3000/games
+get http://localhost:3000/games
 
 ### get game by id
-get https://localhost:3000/games/3
+get http://localhost:3000/games/3
 
 ### delete game by id
-DELETE https://localhost:3000/games/12
+DELETE http://localhost:3000/games/12
 
 
 ### not available game id 
-DELETE https://localhost:3000/games/11
+DELETE http://localhost:3000/games/11
 
 ### post game
 
-post https://localhost:3000/games
+post http://localhost:3000/games
 Content-Length: application/json
 {
     "GNames": "Forma 1  Serie",
@@ -23,7 +23,7 @@ Content-Length: application/json
 
 
 ### put a game
-PUT https://localhost:3000/games/12
+PUT http://localhost:3000/games/12
 Content-Length: application/json
 
 {
@@ -33,22 +33,22 @@ Content-Length: application/json
 }
 
 ### get all type
-get https://localhost:3000/types
+get http://localhost:3000/types
 
 ### get type by id
-get https://localhost:3000/types/3
+get http://localhost:3000/types/3
 
 ### delete type by id
-DELETE https://localhost:3000/types/7
+DELETE http://localhost:3000/types/7
 
 
 
 ### not available type id 
-DELETE https://localhost:3000/types/11
+DELETE http://localhost:3000/types/11
 
 ### post type
 
-post https://localhost:3000/types
+post http://localhost:3000/types
 Content-Length: application/json
 {
     "TName": "Puzzle"
@@ -56,7 +56,7 @@ Content-Length: application/json
 
 
 ### put a game
-PUT https://localhost:3000/types/7
+PUT http://localhost:3000/types/7
 Content-Length: application/json
 
 {
