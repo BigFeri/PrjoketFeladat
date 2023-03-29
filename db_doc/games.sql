@@ -8,7 +8,7 @@ create table games (
   GNames varchat(255) not full
   TId int(11) 
   MorS varchat(50) not null
-  primary key(Tid)
+  primary key(id)
   )
   engine = INNODB;
 
