@@ -63,7 +63,6 @@ app.post("/games", (req, res) => {
     TId: +mySanitizeHtml(req.body.TId),
     MorS: mySanitizeHtml(req.body.MorS),
   };
-console.log(newR);
 
   pool.getConnection(function (error, connection) {
     if (error) {
