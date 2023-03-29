@@ -81,6 +81,7 @@ UPDATE games SET
 DELETE from types
   WHERE id = 7;
  
+CALL genStat();
 
 
 

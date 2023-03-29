@@ -5,11 +5,9 @@ get http://localhost:3000/games
 get http://localhost:3000/games/3
 
 ### delete game by id
-DELETE http://localhost:3000/games/12
+DELETE http://localhost:3000/games/6
 
 
-### not available game id 
-DELETE http://localhost:3000/games/11
 
 ### post game
 
