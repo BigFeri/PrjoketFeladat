@@ -5,7 +5,7 @@
   <Properties>
     <Type>SQL Document Design</Type>
     <DatabaseProvider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</DatabaseProvider>
-    <ProviderVersion>8.1.22.0</ProviderVersion>
+    <ProviderVersion>8.2.23.0</ProviderVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </Properties>
   <Connection Name="localhost">
@@ -13,10 +13,14 @@
     <ConnectionString>User Id=root;Host=localhost;Character Set=utf8</ConnectionString>
     <Database>games</Database>
   </Connection>
-  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="50">
+  <Views ShowAdditionalViews="False" IsLayoutActiveAttribute="True" MainViewAttribute="Code" MainViewScale="69">
     <View Name="Design" Visible="False" />
     <View Name="Code" Active="True" Visible="True">
-      <Data />
+      <Data>
+        <Parameters>
+          <Parameter Name="Param1" Direction="Input" DbType="VarChar" />
+        </Parameters>
+      </Data>
     </View>
     <View Name="Data" Visible="True" />
   </Views>

@@ -58,12 +58,12 @@ app.get("/games/:id", (req, res) => {
 });
 
 app.post("/games", (req, res) => {
-  console.log(req.body);
   const newR = {
     GNames: mySanitizeHtml(req.body.GNames),
     TId: +mySanitizeHtml(req.body.TId),
-    MoS: mySanitizeHtml(req.body.MoS),
+    MorS: mySanitizeHtml(req.body.MorS),
   };
+console.log(newR);
 
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -72,13 +72,13 @@ app.post("/games", (req, res) => {
     }
     const sql = `
     INSERT INTO games
-      (GNames, TId, MoS)
+      (GNames, TId, MorS)
       VALUES
       (?, ?, ?)
     `;
     connection.query(
       sql,
-      [newR.GNames, newR.TId, newR.MoS],
+      [newR.GNames, newR.TId, newR.MorS],
       (error, results, fields) => {
         sendingPost(res, error, results, newR);
       }
@@ -91,9 +91,9 @@ app.post("/games", (req, res) => {
 app.put("/games/:id", (req, res) => {
   const id = req.params.id;
   const newR = {
-    name: mySanitizeHtml(req.body.GNames),
+    GNames: mySanitizeHtml(req.body.GNames),
     TId: +mySanitizeHtml(req.body.TId),
-    MoS: mySanitizeHtml(req.body.MoS),
+    MorS: mySanitizeHtml(req.body.MorS),
   };
   pool.getConnection(function (error, connection) {
     if (error) {
@@ -105,12 +105,12 @@ app.put("/games/:id", (req, res) => {
     UPDATE games SET
     GNames = ?,
     TId = ?,
-    MoS = ?
+    MorS = ?
     WHERE id = ?
   `;
     connection.query(
       sql,
-      [newR.GNames, newR.TId, newR.MoS, id],
+      [newR.GNames, newR.TId, newR.MorS, id],
       (error, results, fields) => {
         sendingPut(res, error, results, id, newR)
       }

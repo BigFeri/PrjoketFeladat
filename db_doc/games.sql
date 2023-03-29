@@ -52,10 +52,19 @@ insert into types
 SELECT * FROM games
   WHERE id = 3;
 
+INSERT into games
+  (GNames, Tid, MorS);
+
  INSERT INTO games
-      (GNames, TId, MoS)
+      (GNames, Tid, MorS)
       VALUES
-      ('Roblox', , 'Multi')
+      ('Forma 1 Serie', 3, 'Multi and single');
+
+UPDATE games SET
+    GNames = 'Two Point Hospital1',
+    TId = 6,
+    MorS = 'Singleplayer1' 
+    WHERE id = 1;
 
   SELECT * FROM types
   WHERE id = 6;
